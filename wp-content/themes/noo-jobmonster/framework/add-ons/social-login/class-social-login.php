@@ -627,7 +627,20 @@ class JM_SocialLogin {
 
 				<?php endif; ?>
 				<?php if( $google ) : ?>
-					<li class="button_socical gg" id="<?php echo uniqid('google_login_')?>">
+					<div id="g_id_onload" data-client_id="<?php echo jm_get_3rd_api_setting('google_client_id', '') ?>"
+						data-context="signin"
+						data-ux_mode="popup"
+						data-callback="handleGoogleLogin"
+						data-itp_support="true">
+						</div>
+						<div class="g_id_signin"
+							data-type="standard"
+							data-shape="rectangular"
+							data-theme="outline"
+							data-text="signin_with"
+							data-size="large"
+							data-logo_alignment="left">
+						</div>
 						<i data-id="<?php echo $id_google; ?>" id="i_<?php echo $id_google; ?>" class="fab fa-google"></i>
 						<em data-id="<?php echo $id_google; ?>" id="<?php echo $id_google; ?>" class="fa-google"><?php _e('Login with Googlea', 'noo'); ?></em>
 
@@ -678,10 +691,20 @@ class JM_SocialLogin {
 
 			<?php endif; ?>
 			<?php if( $google ) : ?>
-				<li class="button_socical gg" id="<?php echo uniqid('google_login_')?>">
-					<i data-id="<?php echo $id_google; ?>" id="i_<?php echo $id_google; ?>" class="fab fa-google"></i>
-					<em data-id="<?php echo $id_google; ?>" id="<?php echo $id_google; ?>" class="fa-google"><?php _e('Login with Googlex', 'noo'); ?></em>
-				</li>
+				<div id="g_id_onload" data-client_id="<?php echo jm_get_3rd_api_setting('google_client_id', '') ?>"
+						data-context="signin"
+						data-ux_mode="popup"
+						data-callback="handleGoogleLogin"
+						data-itp_support="true">
+						</div>
+						<div class="g_id_signin"
+							data-type="standard"
+							data-shape="rectangular"
+							data-theme="outline"
+							data-text="signin_with"
+							data-size="large"
+							data-logo_alignment="left">
+						</div>
 			<?php endif; ?>
 			<?php if( $linkedin ) : ?>
 				<li class="button_socical linkedin">
@@ -721,17 +744,11 @@ class JM_SocialLogin {
 
 			    	<?php endif; ?>
 			    	<?php if( $google ) : ?>
-						<!-- TESTTEST -->
-			    		<!-- <div class="button_socical gg" id="<?php echo uniqid('google_login_')?>">
-                            <i data-id="<?php echo $id_google; ?>" id="i_<?php echo $id_google; ?>" class="fab fa-google"></i>
-                            <em data-id="<?php echo $id_google; ?>" id="<?php echo $id_google; ?>" class="fa-google"><?php _e('Login with Googleb', 'noo'); ?></em>
-			    		</div> -->
 
 						<div id="g_id_onload" data-client_id="<?php echo jm_get_3rd_api_setting('google_client_id', '') ?>"
 						data-context="signin"
 						data-ux_mode="popup"
 						data-callback="handleGoogleLogin"
-						data-auto_select="true"
 						data-itp_support="true">
 						</div>
 						<div class="g_id_signin"
@@ -742,11 +759,6 @@ class JM_SocialLogin {
 							data-size="large"
 							data-logo_alignment="left">
 						</div>
-
-						<script type="text/javascript">
-
-
-							</script>
 
 			    	<?php endif; ?>
 			    	<?php if( $linkedin ) : ?>
