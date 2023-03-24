@@ -542,6 +542,7 @@ if (!class_exists('Noo_Application')) :
             $columns["application_status"] = __("Status", 'noo');
             $columns["candidate"] = __("Application", 'noo');
             $columns["job"] = __("Applied for Job", 'noo');
+            $columns["job_source"] = __("Job Source", 'noo');
             $columns["attachment"] = __("CV | Attachment", 'noo');
             $columns["job_application_posted"] = __("Posted", 'noo');
             $columns['job_application_actions'] = __("Actions", 'noo');
@@ -578,6 +579,22 @@ if (!class_exists('Noo_Application')) :
                         echo '<a href="' . get_permalink($job->ID) . '">' . $job->post_title . '</a>';
                     } elseif ($job = get_post_meta($post->ID, '_job_applied_for', true)) {
                         echo esc_html($job);
+                    } else {
+                        echo '<span class="na">&ndash;</span>';
+                    }
+                    break;
+                case 'job_source' :
+                    $job = get_post($post->ID);
+
+                    if ($job && $job->post_type === 'noo_job') {
+                        echo '<a href="' . noo_get_post_meta($job->post_name, 'che-do-khac') . '">' . $job->post_title . '</a>';
+                    } elseif ($job2 = get_post_meta($post->ID, '_job_applied_for', true)) {
+                        if($job_source_url = noo_get_post_meta($job->post_parent, '_noo_job_field_job_source_url', '')) {
+                            echo '<a href="' . $job_source_url . '">VIEW</a>';
+                        } else {
+                            echo "No source";
+                        }
+                                       
                     } else {
                         echo '<span class="na">&ndash;</span>';
                     }
@@ -1213,9 +1230,16 @@ if (!class_exists('Noo_Application')) :
 
         public static function get_application_status(){
             return apply_filters('noo_application_status', array(
-                'publish' 	=> __('Approved', 'noo'),
+                'probation_passed' 	=> __('Đã pass thử việc', 'noo'),
+                'work_first_day' 	=> __('Đã đi làm', 'noo'),
+                'offer_deny' 	=> __('Đã từ chối Offer', 'noo'),
+                'offer_agree' 	=> __('Đã chấp nhận Offer', 'noo'),
+                'offered' 	=> __('Đã gửi Offer', 'noo'),
+                'interview' 	=> __('Đang phỏng vấn', 'noo'),
+                'reviewed' 	=> __('Đã review CV', 'noo'),
+                'publish' 	=> __('Đã duyệt', 'noo'),
                 'rejected' 	=> __('Rejected', 'noo'),
-                'pending' 	=> __('Pending', 'noo'),
+                'pending' 	=> __('Đang chờ', 'noo'),
                 'inactive' 	=> __('Inactive', 'noo'),
             ));
         }

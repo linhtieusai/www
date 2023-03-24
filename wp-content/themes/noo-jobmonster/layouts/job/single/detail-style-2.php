@@ -82,12 +82,19 @@ $current_user_role = Noo_Member::get_user_role(get_current_user_id());
 
 
                     $id = jm_job_custom_fields_name($field['name'], $field);
+
+                   
                     if( isset( $field['is_tax'] ) ) {
+
+
+
                         $value = jm_job_get_tax_value();
                         $value = implode( ',', $value );
+                        
                     } else {
                         $value = noo_get_post_meta(get_the_ID(), $id, '');
                     }
+                    
                     $icon = isset($field['icon']) ? $field['icon'] : '';
                     $icon_class = str_replace("|", " ", $icon);
                     $current_user_id = get_current_user_id();
@@ -119,8 +126,8 @@ $current_user_role = Noo_Member::get_user_role(get_current_user_id());
 
                 <?php endif;
                 if ($field_skipped >= 1):?>
-
-                    <?php 
+                    <!-- link custom -->
+                    <!-- <?php 
                         $package_page_id = Noo_Resume_Package::get_setting( 'resume_package_page_id' );
                         $link = get_permalink($package_page_id);
                         $link = '<a href="' . esc_url($link) . '" class="upgrade">' . __('Upgrade', 'noo') . '</a>';
@@ -133,7 +140,7 @@ $current_user_role = Noo_Member::get_user_role(get_current_user_id());
                         <div class="noo-message noo-message-error">
                             <?php echo sprintf(__('Please login with Candidate account to view more fields.', 'noo'), $link) ?>
                         </div>    
-                    <?php } ?>
+                    <?php } ?> -->
 
                 <?php endif;
             }
